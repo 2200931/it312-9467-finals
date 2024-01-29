@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Box Icons [https://boxicons.com/usage]-->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!--jquery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <title>Rooms</title>
+    <link rel="icon" href='/icons/r-icon.svg' type="image/svg">
+    <link rel="stylesheet" href="/styles/user_dashboard.css">
+</head>
+
+<body>
+    <!--START OF SIDEBAR-->
+    <section id="sidebar">
+        <a href="/user_dashboard" alt="Rentify Logo" class="logo-img">
+            <img src='/icons/r-icon.svg' alt="Rentify Logo" class="logo-img">
+        </a>
+        <ul class="side-menu top">
+            <li>
+                <a href="/user_dashboard">
+                    <i class='bx bxs-dashboard'></i>
+                    <span class="text">Dashboard</span>
+                </a>
+            </li>
+            <li class="active">
+                <a href="/rooms">
+                    <i class='bx bxs-door-open'></i>
+                    <span class="text">Rooms</span>
+                </a>
+            </li>
+            <li>
+                <a href="/equipments">
+                    <i class='bx bxs-cabinet'></i>
+                    <span class="text">Equipments</span>
+                </a>
+            </li>
+            <ul class="side-menu bottom">
+                <li>
+                    <a href="#" class="logout" onclick="openLogoutModal()">
+                        <i class='bx bx-log-out'></i>
+                        <span class="text">Logout</span>
+                    </a>
+                </li>
+            </ul>
+    </section>
+    <!--END OF SIDEBAR-->
+
+    <!--ROOM VIEW MODAL-->
+    <div id="viewModal" class="modal">
+        <div class="view-modal-content">
+            <span class="close" onclick="closeViewModal()">&times;</span>
+            <div class="room-view-photo">
+                <img class="room-image" src="../uploads/rooms/room3.jpg" alt="Room Photo">
+            </div>
+            <section class="view-modal-details">
+                <h3>Room Overview</h3>
+                <ul>
+                    <li>
+                        <i class='bx bx-layer'></i>
+                        <span class="text">{{room_location}}</span>
+                    </li>
+                    <li>
+                        <i class='bx bxs-group'></i>
+                        <span class="text">{{room_capacity}}</span>
+                        </i>
+                    </li>
+                </ul>
+                <br>
+                <h3>Room Amenities</h3>
+                <ul>
+                    <li>
+                        <i class='bx bxl-instagram-alt'></i>
+                        <span class="text">Projector</span>
+                        </i>
+                    </li>
+                </ul>
+            </section>
+            <button class="modal-rent-button" onclick="openRentModal(); closeViewModal()">Rent</button>
+        </div>
+    </div>
+    <!--RENT MODAL-->
+    <div id="rentModal" class="modal">
+        <div class="rent-modal-content">
+            <span class="close" onclick="closeRentModal()">&times;</span>
+            <div class="rent-v3-content">
+                <div class="rent-form">
+                    <div class="rent-header">
+                        <h3 class="heading">Rent a Room</h3>
+                        <p>Fill all form field to go next step</p>
+                    </div>
+                    <form class="form-modal" action="/rooms" method="POST" autocomplete="off">
+                        <div id="form-info">
+                            <!-- PERSONAL -->
+                            <section>
+                                <div class="inner">
+                                    <h3>Student Information:</h3>
+                                    <!--School ID-->
+                                    <div class="form-row">
+                                        <div class="form-holder form-holder-2">
+                                            <label class="form-row-inner">
+                                                <input type="number" name="id_number" id="id_num" class="form-control"
+                                                    required>
+                                                <span class="label">SLU ID Number*</span>
+                                                <span class="border"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <!--Full Name-->
+                                    <div class="form-row">
+                                        <div class="form-holder">
+                                            <label class="form-row-inner">
+                                                <input type="text" class="form-control" id="first_name"
+                                                    name="first_name" required>
+                                                <span class="label">First Name*</span>
+                                                <span class="border"></span>
+                                            </label>
+                                        </div>
+                                        <div class="form-holder">
+                                            <label class="form-row-inner">
+                                                <input type="text" class="form-control" id="last_name" name="last_name"
+                                                    required>
+                                                <span class="label">Last Name*</span>
+                                                <span class="border"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <!--Contact Number-->
+                                    <h4>Contact Information:</h4>
+                                    <!--School Email Address-->
+                                    <div class="form-row">
+                                        <div class="form-holder form-holder-2">
+                                            <label class="form-row-inner">
+                                                <input type="text" name="school_email" id="email" class="form-control"
+                                                    required>
+                                                <span class="label">School Email Address*</span>
+                                                <span class="border"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-holder form-holder-2">
+                                            <label class="form-row-inner">
+                                                <input type="number" name="contact_number" id="contact_num"
+                                                    class="form-control" placeholder="+63">
+                                                <span class="label">Contact Number</span>
+                                                <span class="border"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </form>
+                    <button type="submit" class="rent-order-button" value="Rent">Rent</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--LOGOUT MODAL-->
+    <div id="logoutModal" class="modal">
+        <div class="logout-modal-content">
+            <span class="close" onclick="closeLogoutModal()">&times;</span>
+            <p>Are you sure you want to logout?</p>
+            <button class="logout-button" onclick="logout()">Logout</button>
+        </div>
+    </div>
+    <!--START OF CONTENT-->
+    <section id="content">
+        <nav>
+            <i class='bx bx-menu-alt-left'></i>
+        </nav>
+        <main id="room-content">
+            <div class="head-title">
+                <div class="left">
+                    <h1>Rooms</h1>
+                    <ul class="dashboard-breadcrumb">
+                        <li>
+                            <a href="user_dashboard">Home</a>
+                        </li>
+                        <li><i class='bx bx-chevron-right'></i></li>
+                        <li>
+                            <a class="active" href="rooms">Rooms</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="rooms-data">
+                <div class="order">
+                    <div class="head">
+                        <div>
+                            <h3>Rooms Details</h3>
+                        </div>
+                    </div>
+                    <div class="room-container">
+                        {{#each rooms}}
+                        <div class="room-card" id="results">
+                            <div class="room-photo">
+                                <img class="room-image" src="uploads/rooms/{{room_photo}}.jpg" alt="Room Photo">
+                            </div>
+                            <div class="room-details">
+                                <h4>Room Number: {{ room_no }}</h4>
+                                <span>
+                                    <i class='bx bxs-map-pin'></i>
+                                    Location: {{ room_location }}
+                                </span>
+                                <p>
+                                    <i class='bx bxs-group'></i>
+                                    Capacity: {{ room_capacity }}
+                                </p>
+                                <br>
+                                <p>Posted by: {{ custodian_id }}</p>
+                                <p data-date-format="created_at">{{ created_at }}</p>
+                                <p data-date-format="updated_at">{{ updated_at }}</p>
+                            </div>
+                            <section class="room-card-buttons">
+                                <p id="room-status">{{room_status}}</p>
+                                <div class="buttons">
+                                    <button class="view-button" id="viewBtn" type="button"
+                                        onclick="openViewModal()">View</button>
+                                    <button class="rent-button" type="button" onclick="openRentModal()">Rent</button>
+                                </div>
+                                <button class="share-button" type="button">
+                                    <i class='bx bx-share-alt'></i>
+                                </button>
+                                <button class="report-button" type="button">
+                                    <i class='bx bxs-flag-alt'></i>
+                                </button>
+                            </section>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+    </section>
+    <!--END OF CONTENT-->
+</body>
+<script src="/scripts/script.js"></script>
+
+</html>

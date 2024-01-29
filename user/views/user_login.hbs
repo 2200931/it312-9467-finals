@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login</title>
+    <link rel="icon" href='/icons/r-icon.png' type="image/png">
+    <link rel="stylesheet" href="/styles/user_login.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="form-box login">
+            <img src='/icons/rentify-icon.png' alt="Rentify Logo" class="logo-img">
+            <h2>Hi there! Welcome back </h2>
+            <h4>Log in to Rentify with your School ID</h4>
+            <form action="/auth/user_dashboard" method="POST">
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="id-card-outline"></ion-icon></span>
+                    <label>School ID</label>
+                    <input type="number" name="school_id" placeholder="School ID" required>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                    <label>Password</label>
+                    <input type="password" name="password" placeholder="Password" required>
+                </div>
+                <div class="forgot">
+                    <a href="/contact_admin">Forgot Password?</a>
+                </div>
+                <button type="submit" class="login-button">Login</button>
+                <div class="login-register">
+                    <p> Don't have an account?
+                        <a href="/contact_admin" class="register-link">Register</a>
+                    </p>
+                </div>
+            </form>
+            {{#if message}}
+            <h4 class="alert">{{message}}</h4>
+            {{/if}}
+        </div>
+    </div>
+    <!--Ionics Icons [https://ionic.io/ionicons/usage]-->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Box Icons [https://boxicons.com/usage]-->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Dashboard</title>
+    <link rel="icon" href='./icons/r-icon.svg' type="image/svg">
+    <link rel="stylesheet" href="/styles/user_dashboard.css">
+</head>
+
+<body>
+    <!--START OF SIDEBAR-->
+    <section id="sidebar">
+        <a href="/user_dashboard" alt="Rentify Logo" class="logo-img">
+            <img src='/icons/r-icon.svg' alt="Rentify Logo" class="logo-img">
+        </a>
+        <ul class="side-menu top">
+            <li class="active">
+                <a href="/user_dashboard">
+                    <i class='bx bxs-dashboard'></i>
+                    <span class="text">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="/rooms">
+                    <i class='bx bxs-door-open'></i>
+                    <span class="text">Rooms</span>
+                </a>
+            </li>
+            <li>
+                <a href="/equipments">
+                    <i class='bx bxs-cabinet'></i>
+                    <span class="text">Equipments</span>
+                </a>
+            </li>
+            <ul class="side-menu bottom">
+                <li>
+                    <a href="#" class="logout" onclick="openLogoutModal()">
+                        <i class='bx bx-log-out'></i>
+                        <span class="text">Logout</span>
+                    </a>
+                </li>
+            </ul>
+    </section>
+    <!--END OF SIDEBAR-->
+    <!--LOGOUT MODAL-->
+    <div id="logoutModal" class="modal">
+        <div class="logout-modal-content">
+            <span class="close" onclick="closeLogoutModal()">&times;</span>
+            <p>Are you sure you want to logout?</p>
+            <button class="logout-button" onclick="logout()">Logout</button>
+        </div>
+    </div>
+    <!--START OF CONTENT-->
+    <section id="content">
+        <nav>
+            <i class='bx bx-menu-alt-left'></i>
+        </nav>
+        <main id="dashboard-content">
+            <div class="head-title">
+                <div class="left">
+                    <h1>Dashboard</h1>
+                    <ul class="dashboard-breadcrumb">
+                        <li>
+                            <a href="user_dashboard">Home</a>
+                        </li>
+                        <li><i class='bx bx-chevron-right'></i></li>
+                        <li>
+                            <a class="active" href="user_dashboard">Dashboard</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <ul class="box-info">
+                <li>
+                    <i class='bx bxs-door-open'></i>
+                    <span class="text">
+                        <!--UPDATE: BY NUMBER OF ROOMS AVAILABLE-->
+                        <h3>{{roomResult}}</h3>
+                        <p>Rooms Available</p>
+                    </span>
+                </li>
+                <li>
+                    <i class='bx bxs-cabinet'></i>
+                    <span class="text">
+                        <!--UPDATE: BY NUMBER OF EQUIPMENT AVAILABLE-->
+                        <h3>{{equipResult}}</h3>
+                        <p>Equipments Available</p>
+                    </span>
+                </li>
+            </ul>
+            <div class="transactions-data">
+                <div class="order">
+                    <div class="head">
+                        <h3>Recent Transactions</h3>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Transaction Number</th>
+                                <th>Room No</th>
+                                <th>Custodian ID</th>
+                                <th>Resource ID</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each transactions}}
+                            <tr>
+                                <td>{{ transaction_num }}</td>
+                                <td>{{ room_no }}</td>
+                                <td>{{ custodian_id }}</td>
+                                <td>{{ resource_id }} </td>
+                                <td data-date-format="transaction_date">{{ transaction_date }}</td>
+                                <td class="status {{transaction_status}}">{{ transaction_status }}</td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </section>
+    <!--END OF CONTENT-->
+</body>
+<script src="/scripts/script.js"></script>
+
+</html>

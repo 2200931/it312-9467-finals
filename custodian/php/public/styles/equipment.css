@@ -1,0 +1,201 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+:root {
+    --primary: #FCF7F8;
+    --accent: #F5CB5C;
+    --secondary-black: #242423;
+    --secondary-gray: #333533;
+    --tinge-aqua: #CFDBD5;
+    --tinge-green: #E8EDDF;
+    --error: #FF6058;
+    --approve: #65FF58;
+    --shadow: #ECEBEB;
+}
+
+/* Return Arrow */
+.return-arrow {
+    margin-top: 30px;
+    margin-left: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    color: var(--secondary-gray);
+}
+
+.return-arrow a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+}
+
+.return-arrow i {
+    font-size: 20px;
+}
+
+.return-arrow span {
+    font-size: 18px;
+    margin-left: 8px;
+}
+
+.return-arrow:hover {
+    color: var(--accent);
+}
+
+/* Add Equipments UI */
+#add-equipments-button {
+    margin-top: 10px;
+    margin-left: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: var(--primary);
+    background-color: var(--accent);
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+    font-weight: bold;
+}
+
+.add-equipments-button:hover {
+    background-color: #e2bd57;
+}
+
+.add-equipments-button:active {
+    background-color: #e2bd57;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.input-equip-image {
+    text-align: center;
+    padding: 3%;
+    border: thin solid var(--secondary-black);
+}
+
+.input-equip-image label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#image-name {
+    color: var(--secondary-gray);
+    font-size: 12px;
+}
+
+.add-equip-button {
+    margin-top: 20px;
+    margin-left: 210px;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: var(--primary);
+    background-color: var(--accent);
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}
+
+.add-equip-button:hover {
+    background-color: #e2bd57;
+}
+
+.add-equip-button:active {
+    background-color: var(--tinge-green);
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+/* Equipment Error */
+.equip-error-container {
+    margin-top: 30px;
+    margin-left: 25px;
+    border: 3px solid var(--error);
+    width: 500px;
+}
+
+.equip-error-text {
+    margin: 20px;
+    color: var(--error);
+    text-align: center;
+}
+
+#equipment-form {
+    background-color: var(--primary);
+    max-width: 400px;
+    height: 530px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px;
+}
+
+#equipment-form label {
+    font-size: 20px;
+    margin-bottom: 6px;
+    color: var(--secondary-black);
+    display: flex;
+}
+
+#equipment_image {
+    margin-bottom: 20px;
+}
+
+#equipment-form input[type="text"],
+#equipment-form input[type="number"],
+#equipment-form select,
+#equipment-form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 18px;
+}
+
+/* Styling for the file input */
+input[type="file"] {
+    margin-top: 6px;
+    margin-bottom: 20px;
+    font-size: 18px;
+    display: none;
+}
+
+/* File Upload Error */
+.file-error-container {
+    margin-top: 30px;
+    margin-left: 300px;
+    border: 3px solid var(--error);
+    width: 500px;
+}
+
+.file-error-text {
+    margin: 20px;
+    color: var(--error);
+    text-align: center;
+}
