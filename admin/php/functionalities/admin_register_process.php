@@ -4,7 +4,7 @@ include '../db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $password = $_POST['password']; // Store the plain text password
     $role = $_POST['role'];
 
     // Check if the username is a number

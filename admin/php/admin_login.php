@@ -31,23 +31,17 @@
             <form method="POST">
                 <div class="input-box">
                     <span class="icon"><ion-icon name="id-card-outline"></ion-icon></span>
-                    <label>Custodian ID</label>
+                    <label>Admin ID</label>
                     <input type="number" name="admin_id" id="admin_id" value="<?= htmlspecialchars($_POST["admin_id"] ?? "") ?>"
-                        placeholder="Custodian ID" required>
+                        placeholder="Admin ID" required>
                 </div>
                 <div class="input-box">
                     <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
                     <label>Password</label>
                     <input type="admin_password" name="admin_password" placeholder="Password" required>
                 </div>
-                <div class="forgot">
-                    <a href="../php/pages/contact_admin.php">Forgot Password?</a>
-                </div>
                 <button type="submit" class="login-button">Login</button>
                 <div class="login-register">
-                    <p> 
-                        <a href="../php/functionalities/admin_register.php" class="register-link">Register a User or Custodian</a>
-                    </p>
                 </div>
             </form>
         </div>

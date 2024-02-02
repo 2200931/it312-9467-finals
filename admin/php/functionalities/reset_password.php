@@ -10,11 +10,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $user_id_to_reset = mysqli_real_escape_string($mysqli, $_POST["user_id_to_reset"]);
     $new_password = mysqli_real_escape_string($mysqli, $_POST["new_password"]);
 
-    // Hash the new password
-    $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
-
-    // Update the user's password in the database
-    $update_sql = "UPDATE user_credentials SET password = '{$hashed_password}' WHERE school_id = '{$user_id_to_reset}'";
+    // Update the user's password in the database (without hashing)
+    $update_sql = "UPDATE user_credentials SET password = '{$new_password}' WHERE school_id = '{$user_id_to_reset}'";
     $update_result = $mysqli->query($update_sql);
 
     if ($update_result) {
@@ -46,7 +43,7 @@ $user_id_to_reset = isset($_GET['user_id']) ? mysqli_real_escape_string($mysqli,
     <form action="reset_password.php" method="post">
         <input type="hidden" name="user_id_to_reset" value="<?php echo htmlspecialchars($user_id_to_reset); ?>">
         <label for="new_password">New Password:</label>
-        <input type="password" name="new_password" required>
+        <input type="text" name="new_password" required> <!-- Use 'text' for plain text password -->
         <button type="submit">Reset Password</button>
     </form>
 </body>

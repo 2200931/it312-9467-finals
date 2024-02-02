@@ -6,7 +6,7 @@
     <title>Admin Registration</title>
 </head>
 <body>
-    <h2>Admin Registration</h2>
+    <h2>User/Custodian Registration</h2>
     <form action="admin_register_process.php" method="post">
         <label for="username">School ID:</label>
         <input type="text" name="username" required>
