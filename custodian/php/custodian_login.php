@@ -7,32 +7,47 @@ $is_invalid = false;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $custodian_id = mysqli_real_escape_string($mysqli, $_POST["custodian_id"]);
-    $password = mysqli_real_escape_string($mysqli, $_POST["password"]);
+    $password = mysqli_real_escape_string($mysqli, $_POST["custodian_password"]);
 
     // Fetch custodian details from the database based on the provided custodian_id
-    $sql = "SELECT * FROM custodian_credentials WHERE custodian_id = '{$custodian_id}'";
-    $result = $mysqli->query($sql);
+    $sql = "SELECT custodian_id, custodian_password FROM custodian_credentials WHERE custodian_id = ?";
+    $stmt = $mysqli->prepare($sql);
 
-    if ($result->num_rows > 0) {
-        $custodian = $result->fetch_assoc();
+    if ($stmt) {
+        $stmt->bind_param("s", $custodian_id);
+        $stmt->execute();
+        $stmt->store_result();
 
-        // Verify the password (without hashing for now)
-        if ($password === $custodian["password"]) {
-            // Password is correct, set session variables and redirect to dashboard
-            $_SESSION["custodian_id"] = $custodian["custodian_id"];
-            header("Location: ../php/pages/custodian_dashboard.php");
-            exit();
+        if ($stmt->num_rows > 0) {
+            $stmt->bind_result($fetched_custodian_id, $stored_password);
+            $stmt->fetch();
+
+            // Verify the password (without hashing for plain text passwords)
+            if ($password === $stored_password) {
+                // Password is correct, set session variables and redirect to dashboard
+                $_SESSION["custodian_id"] = $fetched_custodian_id;
+                header("Location: ../php/pages/custodian_dashboard.php");
+                exit();
+            } else {
+                // Password is incorrect
+                $is_invalid = true;
+            }
         } else {
-            // Password is incorrect
+            // Custodian not found
             $is_invalid = true;
         }
+
+        $stmt->close();
     } else {
-        // Custodian not found
+        // Handle statement preparation error
         $is_invalid = true;
     }
 }
 
 ?>
+
+<!-- Rest of your HTML code remains unchanged -->
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -51,10 +66,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     </div>
 
     <div class="wrapper">
-        <?php if ($is_invalid): ?>
-            <div class="error-message">Invalid Login</div>
-        <?php endif; ?>
-
         <div class="form-box login">
             <img src='public/icons/r-icon.svg' alt="Rentify Logo" class="logo-img">
             <h2>Hi there! Welcome back </h2>
@@ -68,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <div class="input-box">
                     <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
                     <label>Password</label>
-                    <input type="password" name="password" placeholder="Password" required>
+                    <input type="password" name="custodian_password" placeholder="Password" required>
                 </div>
                 <div class="forgot">
                     <a href="../php/pages/contact_admin.php">Forgot Password?</a>

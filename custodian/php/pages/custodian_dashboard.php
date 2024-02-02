@@ -44,7 +44,7 @@
             </li>
             <ul class="side-menu bottom">
                 <li>
-                    <a href="#" class="logout" onclick="openLogoutModal()">
+                    <a href="../custodian_login.php" class="logout" onclick="openLogoutModal()">
                         <i class='bx bx-log-out'></i>
                         <span class="text">Logout</span>
                     </a>
@@ -86,4 +86,5 @@
 
 </body>
 <script src="../public/scripts/script.js"></script>
+
 </html>
