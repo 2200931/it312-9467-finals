@@ -107,9 +107,10 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["search_id"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Box Icons [https://boxicons.com/usage]-->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <title>Manage User</title>
     <link rel="icon" href='../public/assets/images/r-icon.svg' type="image/svg">
+    <link rel="stylesheet" href='../public/styles/room.css'>
     <link rel="stylesheet" href="../public/styles/admin_dashboard.css">
+    <link rel="stylesheet" href='../public/styles/custodian_dashboard.css'>
 </head>
 
 <body>
