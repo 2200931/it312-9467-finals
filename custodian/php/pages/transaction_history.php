@@ -12,6 +12,23 @@
     <link rel="stylesheet" href="../public/styles/custodian_dashboard.css">
 </head>
 
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 8px; /* Adjust the padding as needed */
+        text-align: left; /* Align text to the left within cells */
+        border-bottom: 1px solid #ddd; /* Add a bottom border to each cell */
+    }
+
+    th {
+        background-color: #f2f2f2; /* Background color for header cells */
+    }
+</style>
+
 <body>
     <!-- START OF SIDEBAR -->
     <section id="sidebar">
@@ -70,7 +87,7 @@
             </form>
         </nav>
         <!-- TRANSACTION HISTORY -->
-        <div class="transaction-history">
+        <div class="content-box">
             <?php
             // Include your database connection file
             include '../db.php';
@@ -82,20 +99,22 @@
             if ($result->num_rows > 0) {
                 echo '<table>';
                 echo '<tr>';
-                echo '<th>Transaction ID</th>';
-                echo '<th>Equipment ID</th>';
-                echo '<th>Transaction Date</th>';
-                echo '<th>Transaction Type</th>';
-                echo '<th>Quantity</th>';
+                echo '<th>Transaction Number</th>';
+                echo '<th>Room No</th>';
+                echo '<th>Equip No</th>';
+                echo '<th>Resource ID</th>';
+                echo '<th>Date</th>';
+                echo '<th>Status</th>';
                 echo '</tr>';
 
                 while ($row = $result->fetch_assoc()) {
                     echo '<tr>';
                     echo '<td>' . $row['transaction_id'] . '</td>';
-                    echo '<td>' . $row['equipment_id'] . '</td>';
+                    echo '<td>' . $row['room_no'] . '</td>';
+                    echo '<td>' . $row['equip_name'] . '</td>';
+                    echo '<td>' . $row['resource_type'] . '</td>';
                     echo '<td>' . $row['transaction_date'] . '</td>';
-                    echo '<td>' . $row['transaction_type'] . '</td>';
-                    echo '<td>' . $row['quantity'] . '</td>';
+                    echo '<td>' . $row['transaction_status'] . '</td>';
                     echo '</tr>';
                 }
 

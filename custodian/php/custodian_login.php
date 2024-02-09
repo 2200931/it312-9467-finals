@@ -70,6 +70,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <img src='public/icons/r-icon.svg' alt="Rentify Logo" class="logo-img">
             <h2>Hi there! Welcome back </h2>
             <h4>Log in to Rentify</h4>
+            <?php if ($is_invalid): ?>
+        <div class="error-message" style="color: red;">
+            <p>Invalid custodian ID or password. Please try again.</p>
+        </div>
+        <?php endif; ?>
             <form method="POST">
                 <div class="input-box">
                     <span class="icon"><ion-icon name="id-card-outline"></ion-icon></span>
